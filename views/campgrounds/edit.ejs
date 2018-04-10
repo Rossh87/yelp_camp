@@ -1,0 +1,38 @@
+
+<%include ../partials/header%>
+
+
+
+	<div class="row">
+		<div class="centered-form">
+			<h1>Edit <%= campground.name %></h1>
+			<form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" value="<%= campground.name%>" name="campground[name]">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" value="<%= campground.image%>" name="campground[image]">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" value="<%= campground.description%>" name="campground[description]">
+				</div>
+				<div class="form-group">
+					<div class="currency-span form-control">
+						<span class="currency-symbol">$</span>
+						<input class="currency-input" type="number" value="<%= campground.price %>" placeholder="price per night" name="price" min="0" step="0.01" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="location"></label>
+					<input id="location" placeholder="Yosemite Nat'l Park, CA" type="text" name="location" class="form-control">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-large btn-primary btn-block" type="Submit">Submit!
+					</button>
+				</div>
+			</form>
+			<a href="/campgrounds">Back</a>
+		</div>
+	</div>
+
+<%include ../partials/footer%>

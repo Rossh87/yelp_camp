@@ -1,0 +1,52 @@
+.thumbnail {
+	padding:0;
+}
+
+.thumbnail img {
+	width:100%;
+}
+
+.thumbnail .caption-full {
+	padding:9px;
+}
+
+.centered-form {
+	width:30%; 
+	margin:25px auto;
+}
+
+.centered-form h1 {
+	text-align: center;
+}
+
+.display-inline {
+	display:inline;
+}
+
+.currency-span {
+	border:1px solid #ccc;
+	display:flex;	
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.currency-input {
+	border:none;
+	outline:none;
+	width: 95%;
+}
+
+.currency-symbol {
+	color:#aaa;
+	line-height: 1em;
+	font-size:1.75rem;
+}
+
+#delete_form {
+	display:inline;
+}
+
+#map {
+	height:400px;
+	width: 100%;
+}
