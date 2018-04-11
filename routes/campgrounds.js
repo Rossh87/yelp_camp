@@ -17,13 +17,25 @@ var geocoder = NodeGeocoder(options);
 
 // Index/all campgrounds
 router.get("/", function(req, res){
-	Campground.find({}, function(err, allCampgrounds){
-		if(err){
-			console.log(err)
-		}else{
-			res.render("campgrounds/index", {campgrounds: allCampgrounds, currentUser: req.user, page: 'campgrounds'})
-		}
-	});
+	if (req.query.search){
+		const escapedStr = escapeStr(req.query.search);
+		const searchExp = new RegExp(escapedStr, "gi");
+		Campground.find( { $or : [ {name: searchExp}, {description: searchExp} ] }, function(err, matchCampgrounds){
+			if (err){
+				console.log(err)
+			} else {
+				res.render("campgrounds/index", {campgrounds: matchCampgrounds, currentUser: req.user, page: 'campgrounds'})
+			}
+		});
+	} else {
+		Campground.find({}, function(err, allCampgrounds){
+			if(err){
+				console.log(err)
+			}else{
+				res.render("campgrounds/index", {campgrounds: allCampgrounds, currentUser: req.user, page: 'campgrounds'})
+			}
+		});
+	}
 });
 
 // New Campground route
@@ -117,5 +129,11 @@ router.delete("/:id", middleware.checkCampgroundOwner, function(req, res){
 		}
 	})
 });
+
+function escapeStr(str){
+	return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+
 
 module.exports = router;

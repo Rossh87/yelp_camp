@@ -50,3 +50,9 @@
 	height:400px;
 	width: 100%;
 }
+
+#search-form{
+	display:none;
+	margin-top: 8px;
+	margin-bottom: 0;
+}
