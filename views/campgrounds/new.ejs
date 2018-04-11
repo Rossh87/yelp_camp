@@ -3,25 +3,29 @@
 	<div class="row">
 		<h1 style="text-align:center">Create a new campground!</h1>
 		<div class="centered-form">
-			<form action="/campgrounds" method="post">
+			<form action="/campgrounds" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="name" name="name">
+					<label for="name">Name</label>
+					<input id="name" class="form-control" type="text" placeholder="name" name="campground[name]">
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="image link" name="image">
+					<label for="image">Image</label>
+					<input id="image" class="form-control" type="file" placeholder="image link" accept="image/*" name="image" required>
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="description" name="description">
+					<label for="description">Description</label>
+					<input id="description" class="form-control" type="text" placeholder="description" name="campground[description]">
 				</div>
 				<div class="form-group">
 					<div class="currency-span form-control">
+						<label for="price">Cost</label>
 						<span class="currency-symbol">$</span>
-						<input class="currency-input" type="number" placeholder="price per night" name="price" min="0" step="0.01" required>
+						<input id="price" class="currency-input" type="number" placeholder="price per night" name="campground[price]" min="0" step="0.01" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="location"></label>
-					<input id="location" placeholder="Yosemite Nat'l Park, CA" type="text" name="location" class="form-control">
+					<label for="location">Address</label>
+					<input id="location" placeholder="Yosemite Nat'l Park, CA" type="text" name="campground[location]" class="form-control">
 				</div>
 				<div class="form-group">
 					<button class="btn btn-large btn-primary btn-block" type="Submit">Submit!
