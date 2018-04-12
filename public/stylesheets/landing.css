@@ -84,3 +84,7 @@ body {
 .no-cssanimations .slideshow li {
 	opacity: 1;
 }
+
+footer{
+	display:none;
+}

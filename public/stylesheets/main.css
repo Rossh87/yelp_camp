@@ -42,6 +42,24 @@
 	font-size:1.75rem;
 }
 
+.campground-card-header {
+	font-size: 2em;
+	display:flex;
+	justify-content: space-between;
+	align-items: baseline;
+	text-decoration: none;
+}
+
+.campground-card-header a:hover{
+	text-decoration: none;
+
+}
+
+.footer{
+	height: 4em;
+	color:white;
+}
+
 #delete_form {
 	display:inline;
 }
@@ -53,6 +71,5 @@
 
 #search-form{
 	display:none;
-	margin-top: 8px;
 	margin-bottom: 0;
 }

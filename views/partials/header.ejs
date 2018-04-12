@@ -3,48 +3,59 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>YelpCamp</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="/stylesheets/main.css">
 	</head>
 	
 	<body>
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="/" class="navbar-brand">YelpCamp</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<% if (!currentUser) { %>
-							<li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : ''%>"><a href="/login">Login</a></li>
-							<li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : ''%>"><a href="/register">Register</a></li>
-						<% } else { %>
-							<li><a href="/users/<%= currentUser._id %>">Signed In As <%= currentUser.username %></a></li>
-							<li><a href="/logout">Logout</a></li>
-						<%}%>
-						<li>
-							<a id="search-toggle" href="#">Search</a>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<a href="/" class="navbar-brand">YelpCamp</a>
+			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>">
+						<a class="nav-link" href="/campgrounds">
+							Home <% if (typeof page !== 'undefined' && page === 'campgrounds') { %> 
+								<span class="sr-only">(Current)</span>
+								<% } %>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav">
+					<% if (!currentUser) { %>
+						<li class="nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : ''%>">
+							<a class="nav-link" href="/login">
+								Login <% if (typeof page !== 'undefined' && page === 'login') { %> 
+								<span class="sr-only">(Current)</span>
+								<% } %>
+							</a>
 						</li>
-						<li>
-							<form id="search-form" class="form-group" action="/campgrounds" method="GET">
-								<input type="text" class="form-control" name="search" placeholder="search campgrounds...">
-							</form>
+						<li class="nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : ''%>">
+							<a class="nav-link" href="/register">
+								Register <% if (typeof page !== 'undefined' && page === 'register') { %> 
+								<span class="sr-only">(Current)</span>
+								<% } %>
+							</a>
 						</li>
-					</ul>
-				</div>
+					<% } else { %>
+						<li class="nav-item"><a class="nav-link" href="/users/<%= currentUser._id %>">Signed In As <%= currentUser.username %></a></li>
+						<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+					<%}%>
+					<li class="nav-item">
+						<a class="nav-link" id="search-toggle" href="#">Search</a>
+					</li>
+					<li class="nav-item">
+						<form id="search-form" class="form-group" action="/campgrounds" method="GET">
+							<input type="text" class="form-control" name="search" placeholder="search campgrounds...">
+						</form>
+					</li>
+				</ul>
 			</div>
 		</nav>
 
-	<div class="container">
+	<div class="container mt-4 mb-5">
 
 		<% if (error && error.length > 0) {%>
 			<div class="alert alert-danger" role="alert"><%= error %></div>
