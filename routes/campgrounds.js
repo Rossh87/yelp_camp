@@ -28,8 +28,8 @@ var upload = multer({storage: storage, fileFilter: imageFilter});
 var cloudinary = require("cloudinary");
 cloudinary.config({
 	cloud_name: "denaqgoiy",
-	api_key: "241892571352766",
-	api_secret: "3_Fg2FCYuofYLnnnPJefZEVAi1Y"
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 // Geocoder config
@@ -37,11 +37,12 @@ cloudinary.config({
 var options = {
 	provider: "google",
 	httpAdapter: "https",
-	apiKey: "AIzaSyDR92fo0YY3wEcPAfRdhVFRatqy1t9lNwE",
+	apiKey: process.env.GEOCODER_API_KEY,
 	formatter: null
 };
 
 var geocoder = NodeGeocoder(options);
+var mapsAPIKey = process.env.MAPS_API_KEY;
 
 
 // Index/all campgrounds
@@ -110,7 +111,7 @@ router.get("/:id", function(req, res){
 				req.flash("error", "Campground not found");
 				return res.redirect("back");
 			} else {
-			res.render("campgrounds/show", {campground: returnedCampground, user: req.user});
+			res.render("campgrounds/show", {campground: returnedCampground, user: req.user, mapsAPIKey: mapsAPIKey});
 		}
 	});
 });
