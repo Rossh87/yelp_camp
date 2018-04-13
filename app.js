@@ -44,6 +44,8 @@ passport.deserializeUser(User.deserializeUser());
 // MomentJS
 
 app.locals.moment = require("moment");
+app.locals.mapsKey = process.env.MAPS_API_KEY;
+
 
 // Views variables
 

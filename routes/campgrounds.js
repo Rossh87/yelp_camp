@@ -14,7 +14,6 @@ var options = {
 
 var geocoder = NodeGeocoder(options);
 
-
 // Index/all campgrounds
 router.get("/", function(req, res){
 	Campground.find({}, function(err, allCampgrounds){

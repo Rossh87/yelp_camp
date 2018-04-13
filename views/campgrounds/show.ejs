@@ -65,6 +65,7 @@
 	</div>
 
 	<script>
+
 		function initMap() {
 
 			let lat = <%= campground.lat %>;
@@ -92,9 +93,11 @@
 				infowindow.open(map, marker);
 			});
 		}
+
+		fetch(`https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuytC1Hom6vRYLCHggI7qm-xZM72pt3c`)
+		.then(data => initMap(data))
+		.catch(err => console.error(err));
+
 	</script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY-HERE&callback=initMap"></script>
-
-
 
 <%include ../partials/footer%>
