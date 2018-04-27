@@ -3,7 +3,6 @@ var express = require("express"),
  	bodyParser = require("body-parser"),
  	mongoose = require("mongoose"),
  	Campground = require("./models/campground"),
- 	seedDB = require("./seeds"),
  	Comment = require("./models/comment"),
  	passport = require("passport"),
  	LocalStrategy = require("passport-local"),
@@ -20,7 +19,10 @@ var commentRoutes = require("./routes/comments"),
 
 // Mongo/Mongoose
 
-mongoose.connect("mongodb://localhost/yelp_camp")
+var mongoURL = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+
+mongoose.connect(mongoURL);
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -63,6 +65,6 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/users", userRoutes);
 
-app.listen(3000, function(){
-	console.log("listening on port 3000");
+app.listen(process.env.PORT || 3000, function(){
+	console.log("listening");
 })
