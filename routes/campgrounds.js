@@ -42,7 +42,6 @@ var options = {
 };
 
 var geocoder = NodeGeocoder(options);
-var mapsAPIKey = process.env.MAPS_API_KEY;
 
 
 // Index/all campgrounds
@@ -111,7 +110,7 @@ router.get("/:id", function(req, res){
 				req.flash("error", "Campground not found");
 				return res.redirect("back");
 			} else {
-			res.render("campgrounds/show", {campground: returnedCampground, user: req.user, mapsAPIKey: mapsAPIKey});
+			res.render("campgrounds/show", {campground: returnedCampground, user: req.user});
 		}
 	});
 });
